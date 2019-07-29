@@ -14,7 +14,7 @@ all:
 	echo "*************************************************************"
 	echo "\nChange Logs:\n"
 	gcc changeLogMod.c -o changelog_generator
-	git log --pretty=oneline --abbrev-commit -n 20 > raw.txt
+	git --git-dir ../.git log --pretty=oneline --abbrev-commit -n 20 > raw.txt
 	head --lines=10 raw.txt
 	./changelog_generator raw.txt outputLog.txt
 	rm -rfv raw.txt
