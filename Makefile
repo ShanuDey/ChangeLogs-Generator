@@ -12,25 +12,23 @@ all:
 	echo "*               |___/             |___/                     *"
 	echo "* Created by : Shanu Dey                                    *"
 	echo "*************************************************************"
-	echo "\nChange Logs:\n"
 	gcc changeLogMod.c -o changelog_generator
-	git --git-dir ../.git log --pretty=oneline --abbrev-commit -n 20 > raw.txt
-	head --lines=10 raw.txt
 	./changelog_generator raw.txt outputLog.txt
-	rm -rfv raw.txt
-	rm -rfv changelog_generator
+	rm -rf raw.txt
+	rm -rf changelog_generator
 	
 .SILENT:clean
 clean:
 	rm -rfv raw.txt
 	rm -rfv changelog_generator
 	rm -rfv outputLog.txt
+	echo " #### Cleaning succesfull #### \n"
 
 .SILENT:raw
 raw:
-	git log --pretty=oneline --abbrev-commit -n 20 > raw.txt
+	git --git-dir ../.git log --pretty=oneline --abbrev-commit -n 20 > raw.txt
+	head --lines=10 raw.txt
 	
 .SILENT:build
 build:
 	gcc changeLogMod.c -o changelog_generator
-
